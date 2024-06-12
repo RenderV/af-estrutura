@@ -1,0 +1,7 @@
+dia,name,priority,completed
+12/06/2024,dar comida ao gato,1,True
+13/06/2024,comprar ração,2,False
+14/06/2024,levar gato ao veterinário,3,False
+15/06/2024,limpar a caixa de areia,1,False
+16/06/2024,comprar brinquedo para o gato,2,False
+17/06/2024,agendar banho para o gato,3,False
