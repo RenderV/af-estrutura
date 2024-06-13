@@ -121,51 +121,6 @@ class BinaryTree(Generic[T]):
             print(root.key)
             self._inorder_rec(root.right)
 
-    def draw_tree(self) -> None:
-        lines, *_ = self._display_aux(self.root)
-        for line in lines:
-            print(line)
-
-    def _display_aux(self, root: Optional[NodeTree[T]]) -> Tuple[List[str], int, int, int]:
-        """Returns list of strings, width, height, and horizontal coordinate of the root."""
-        if root is None:
-            return [" "], 1, 1, 0
-
-        line1 = []
-        line2 = []
-        if root.left is not None:
-            left_lines, left_width, left_height, left_middle = self._display_aux(root.left)
-            line1.append(' ' * (left_width + 1))
-            line1.append('_' * (left_width - left_middle))
-            line2.append(' ' * left_middle + '/')
-            line2.append(' ' * (left_width - left_middle))
-        else:
-            left_lines, left_width, left_height, left_middle = [], 0, 0, 0
-
-        line1.append(str(root.key))
-        line2.append(' ' * len(str(root.key)))
-
-        if root.right is not None:
-            right_lines, right_width, right_height, right_middle = self._display_aux(root.right)
-            line1.append('_' * right_middle)
-            line1.append(' ' * (right_width - right_middle + 1))
-            line2.append(' ' * right_middle + '\\')
-            line2.append(' ' * (right_width - right_middle))
-        else:
-            right_lines, right_width, right_height, right_middle = [], 0, 0, 0
-
-        if left_lines and right_lines:
-            zipped_lines = zip(left_lines, right_lines)
-            lines = [a + ' ' * len(str(root.key)) + b for a, b in zipped_lines]
-        elif left_lines:
-            lines = [a + ' ' * len(str(root.key)) for a in left_lines]
-        elif right_lines:
-            lines = [' ' * len(str(root.key)) + b for b in right_lines]
-        else:
-            lines = []
-
-        return ["".join(line1), "".join(line2)] + lines, left_width + right_width + len(str(root.key)), max(left_height, right_height) + 2, left_width + len(str(root.key)) // 2
-
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
